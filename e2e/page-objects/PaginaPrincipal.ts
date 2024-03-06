@@ -83,4 +83,12 @@ export default class PaginaPrincipal {
   async fecharModalPassageiros() {
     await this.botaoFecharModalPassageiros.click();
   }
+
+  async definirOrigemEDestino(origem: string, destino: string) {
+    await this.campoDropdownOrigem.fill(origem);
+    await this.campoDropdownOrigem.press('Enter');
+
+    await this.campoDropdownDestino.fill(destino);
+    await this.campoDropdownDestino.press('Enter');
+  }
 }

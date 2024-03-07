@@ -1,4 +1,4 @@
-import { Page, Locator } from "@playwright/test";
+import { Page, Locator, expect } from "@playwright/test";
 
 export default class PaginaPrincipal {
   private readonly page: Page;
@@ -99,5 +99,16 @@ export default class PaginaPrincipal {
 
   async buscarPassagens() {
     await this.botaoBuscarPassagens.click();
+  }
+
+  async estaMostrandoPassagem(
+    tipoTrajeto: 'Somente ida' | 'Ida e volta',
+    origem: string,
+    destino: string
+  ) {
+    await expect(this.textoIdaVolta).toHaveText(tipoTrajeto);
+    await expect(this.containerOrigem).toContainText(origem);
+    await expect(this.containerDestino).toContainText(destino);
+    await expect(this.botaoComprar).toBeVisible();
   }
 }
